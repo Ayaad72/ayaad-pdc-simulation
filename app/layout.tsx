@@ -8,8 +8,8 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ayaad pdc simulation",
-  description: "Created with v0",
-  generator: "v0.app",
+  description: "Created by Ayaad",
+  generator: "Ayaad",
   icons: {
     icon: [
       {
