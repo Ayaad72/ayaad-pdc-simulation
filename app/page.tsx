@@ -303,69 +303,73 @@ export default function ParallelSimulation() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <header className="border-b border-slate-700 sticky top-0 bg-slate-950/80 backdrop-blur-sm z-10">
-          <div className="px-4 md:px-8 py-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <header className="sticky top-2 md:top-4 z-50 px-2 md:px-4 mb-6 md:mb-10">
+          <div className="max-w-7xl mx-auto bg-slate-900/70 backdrop-blur-2xl border border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.4)] rounded-2xl md:rounded-3xl px-4 md:px-8 py-4 md:py-6 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 relative z-10">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-white">Parallel & Distributed Computing</h1>
-                <p className="text-sm md:text-base text-slate-400 mt-1">Interactive Simulation: Sum of Numbers 1-12</p>
+                <h1 className="text-2xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 tracking-tight">Parallel & Distributed Computing</h1>
+                <p className="text-xs md:text-sm text-slate-400 mt-1.5 font-medium flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                  Interactive Simulation: Sum of Numbers 1-12
+                </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-2 flex-wrap">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 sm:items-center flex-wrap">
                 {/* Mode Selector */}
                 {mode && (
-                  <div className="flex gap-2 flex-wrap items-center">
-                    <span className="text-xs md:text-sm text-slate-400 whitespace-nowrap">Switch Mode:</span>
+                  <div className="flex gap-2 flex-wrap items-center bg-slate-950/50 p-1.5 rounded-xl border border-slate-800/80 shadow-inner">
+                    <span className="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider font-semibold px-2">Switch:</span>
                     <button
                       onClick={() => !isRunning && (setMode(null), setAnimationState({}))}
-                      className={`px-3 py-2 rounded-lg font-medium transition text-xs md:text-sm ${
-                        'bg-blue-600 hover:bg-blue-700 text-white'
+                      className={`px-3 py-1.5 rounded-lg font-bold transition text-xs md:text-sm ${
+                        'bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
                       }`}
                       disabled={isRunning}
                     >
-                      Sequential
+                      Seq
                     </button>
                     <button
                       onClick={() => !isRunning && (setMode(null), setAnimationState({}))}
-                      className={`px-3 py-2 rounded-lg font-medium transition text-xs md:text-sm ${
-                        'bg-purple-600 hover:bg-purple-700 text-white'
+                      className={`px-3 py-1.5 rounded-lg font-bold transition text-xs md:text-sm ${
+                        'bg-purple-600/20 hover:bg-purple-600/40 text-purple-400 shadow-[0_0_10px_rgba(147,51,234,0.1)]'
                       }`}
                       disabled={isRunning}
                     >
-                      Parallel
+                      Par
                     </button>
                     <button
                       onClick={() => !isRunning && (setMode(null), setAnimationState({}))}
-                      className={`px-3 py-2 rounded-lg font-medium transition text-xs md:text-sm ${
-                        'bg-orange-600 hover:bg-orange-700 text-white'
+                      className={`px-3 py-1.5 rounded-lg font-bold transition text-xs md:text-sm ${
+                        'bg-orange-600/20 hover:bg-orange-600/40 text-orange-400 shadow-[0_0_10px_rgba(249,115,22,0.1)]'
                       }`}
                       disabled={isRunning}
                     >
-                      Distributed
+                      Dist
                     </button>
                   </div>
                 )}
                 
                 {/* Tab Navigation */}
-                <div className="flex gap-2 flex-wrap">
+                <div className="flex bg-slate-950/50 p-1.5 rounded-xl border border-slate-800/80 shadow-inner w-full sm:w-auto">
                   <button
                     onClick={() => setActiveTab('simulation')}
-                    className={`px-4 py-2 rounded-lg font-medium transition text-sm md:text-base ${
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 text-xs md:text-sm flex-1 sm:flex-none ${
                       activeTab === 'simulation'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-100'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 scale-95 hover:scale-100'
                     }`}
                   >
                     Simulation
                   </button>
                   <button
                     onClick={() => setActiveTab('history')}
-                    className={`px-4 py-2 rounded-lg font-medium transition text-sm md:text-base ${
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 text-xs md:text-sm flex-1 sm:flex-none flex items-center justify-center gap-2 ${
                       activeTab === 'history'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-100'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 scale-95 hover:scale-100'
                     }`}
                   >
-                    Results History ({results.length})
+                    Results <span className="bg-slate-900/50 text-xs px-2 py-0.5 rounded-full border border-white/10">{results.length}</span>
                   </button>
                 </div>
               </div>
@@ -388,27 +392,27 @@ export default function ParallelSimulation() {
                   </div>
 
                   {/* Mode Cards Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
                     <ModeCard
                       title="Sequential Processing"
-                      description="One processor handles all tasks one at a time"
-                      color="from-blue-500 to-blue-600"
+                      description="One processor handles all tasks one at a time sequentially."
+                      color="from-blue-600 to-indigo-700"
                       icon="⚙️"
                       onClick={startSequential}
                       disabled={isRunning}
                     />
                     <ModeCard
                       title="Parallel Processing"
-                      description="Two processors work simultaneously with shared memory"
-                      color="from-purple-500 to-purple-600"
+                      description="Two processors work simultaneously with shared memory."
+                      color="from-purple-600 to-pink-700"
                       icon="⚡"
                       onClick={startParallel}
                       disabled={isRunning}
                     />
                     <ModeCard
                       title="Distributed Processing"
-                      description="Two systems communicate via message passing"
-                      color="from-orange-500 to-orange-600"
+                      description="Two systems communicate via message passing over network."
+                      color="from-orange-500 to-red-600"
                       icon="🌐"
                       onClick={startDistributed}
                       disabled={isRunning}
@@ -553,11 +557,15 @@ function ModeCard({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`bg-gradient-to-br ${color} p-6 md:p-8 rounded-xl text-white hover:shadow-2xl hover:scale-105 transition transform disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-start text-left h-full`}
+      className={`relative group bg-gradient-to-br ${color} p-6 md:p-8 rounded-2xl md:rounded-3xl text-white shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex flex-col items-start text-left h-full border border-white/10`}
     >
-      <div className="text-3xl md:text-4xl mb-4">{icon}</div>
-      <h2 className="text-xl md:text-2xl font-bold mb-2">{title}</h2>
-      <p className="text-sm opacity-90">{description}</p>
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-white opacity-10 rounded-full blur-3xl group-hover:opacity-20 transition-opacity duration-500"></div>
+      <div className="absolute bottom-0 right-0 p-6 opacity-10 group-hover:opacity-20 transform group-hover:scale-110 transition-all duration-500 pointer-events-none">
+        <span className="text-8xl">{icon}</span>
+      </div>
+      <div className="text-4xl md:text-5xl mb-5 drop-shadow-lg p-3 bg-white/10 rounded-2xl border border-white/20 backdrop-blur-sm">{icon}</div>
+      <h2 className="text-xl md:text-2xl font-extrabold mb-3 tracking-tight">{title}</h2>
+      <p className="text-sm opacity-90 font-medium leading-relaxed max-w-[85%]">{description}</p>
     </button>
   )
 }
@@ -776,26 +784,34 @@ function DistributedVisualization({ state }: { state: any }) {
 
 function MetricsPanel({ metrics, mode }: { metrics: any; mode: string }) {
   return (
-    <div className="bg-slate-800 rounded-xl p-6 md:p-8 border border-slate-700">
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Performance Metrics</h3>
+    <div className="bg-slate-900/50 backdrop-blur-2xl rounded-2xl md:rounded-3xl p-5 md:p-8 border border-slate-700/50 shadow-[0_0_40px_rgba(0,0,0,0.3)] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-orange-500 opacity-80" />
+      <h3 className="text-xl md:text-2xl font-extrabold text-white mb-6 flex items-center gap-3">
+        <span className="text-2xl drop-shadow-md">📊</span> Performance Dashboard
+      </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <MetricCard label="Total Execution Time" value={`${metrics.totalTime}ms`} />
-        <MetricCard label="Processing Time" value={`${metrics.processingTime}ms`} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-6">
+        <MetricCard label="Total Time" value={`${metrics.totalTime}ms`} />
+        <MetricCard label="Processing" value={`${metrics.processingTime}ms`} />
 
         {mode === 'parallel' && (
-          <MetricCard label="Synchronization/Waiting" value={`${metrics.waitingTime}ms`} />
+          <MetricCard label="Wait/Sync" value={`${metrics.waitingTime}ms`} />
         )}
 
         {mode === 'distributed' && (
-          <MetricCard label="Network Communication Delay" value={`${metrics.communicationDelay}ms`} />
+          <MetricCard label="Network Delay" value={`${metrics.communicationDelay}ms`} />
         )}
 
-        <MetricCard label="Final Result" value={78} highlight={true} />
+        <MetricCard 
+          label="Final Result" 
+          value={78} 
+          highlight={true} 
+          className={mode === 'sequential' ? 'col-span-2 lg:col-span-2' : ''} 
+        />
       </div>
 
-      <div className="p-4 md:p-6 bg-slate-700 rounded-lg border-l-4 border-blue-500">
-        <p className="text-slate-300 text-sm md:text-base">
+      <div className="p-4 md:p-6 bg-slate-800/40 backdrop-blur-md rounded-xl md:rounded-2xl border border-slate-700/50 shadow-inner">
+        <p className="text-slate-300 text-sm md:text-base leading-relaxed">
           {mode === 'sequential' && (
             <>
               <strong className="text-blue-400">Sequential Processing:</strong> One processor executes all tasks one after another.
@@ -826,21 +842,23 @@ function MetricCard({
   label,
   value,
   highlight,
+  className = '',
 }: {
   label: string
   value: string | number
   highlight?: boolean
+  className?: string
 }) {
   return (
     <div
-      className={`p-4 md:p-6 rounded-lg border transition ${
+      className={`p-4 md:p-6 rounded-xl md:rounded-2xl border backdrop-blur-md transition-all duration-300 hover:-translate-y-1 ${
         highlight
-          ? 'bg-green-900 border-green-500'
-          : 'bg-slate-700 border-slate-600 hover:border-slate-500'
-      }`}
+          ? 'bg-gradient-to-br from-green-500/10 to-emerald-500/5 border-green-500/30 hover:border-green-400/50 shadow-[0_0_15px_rgba(34,197,94,0.05)] hover:shadow-[0_0_20px_rgba(34,197,94,0.15)] flex flex-col justify-center'
+          : 'bg-slate-800/40 border-slate-700/50 hover:border-slate-600/80 hover:bg-slate-800/60 shadow-lg'
+      } ${className}`}
     >
-      <p className="text-slate-400 text-xs md:text-sm mb-2">{label}</p>
-      <p className={`text-xl md:text-2xl font-bold ${highlight ? 'text-green-400' : 'text-slate-100'}`}>
+      <p className="text-slate-400 text-[10px] md:text-xs font-semibold uppercase tracking-wider mb-1.5 md:mb-2">{label}</p>
+      <p className={`text-xl md:text-3xl font-extrabold tracking-tight ${highlight ? 'text-green-400 drop-shadow-sm' : 'text-slate-100'}`}>
         {value}
       </p>
     </div>
@@ -860,11 +878,11 @@ function ComparisonCard({
   isCount?: boolean
 }) {
   const getColor = () => {
-    if (isCount) return 'from-slate-700 to-slate-600'
-    if (mode === 'sequential') return 'from-blue-900 to-blue-800'
-    if (mode === 'parallel') return 'from-purple-900 to-purple-800'
-    if (mode === 'distributed') return 'from-orange-900 to-orange-800'
-    return 'from-slate-700 to-slate-600'
+    if (isCount) return 'from-slate-800 to-slate-900 border-slate-700/50'
+    if (mode === 'sequential') return 'from-blue-900/40 to-blue-950/60 border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.1)]'
+    if (mode === 'parallel') return 'from-purple-900/40 to-purple-950/60 border-purple-500/20 shadow-[0_0_15px_rgba(147,51,234,0.1)]'
+    if (mode === 'distributed') return 'from-orange-900/40 to-orange-950/60 border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.1)]'
+    return 'from-slate-800 to-slate-900 border-slate-700/50'
   }
 
   const getModeLabel = () => {
@@ -874,10 +892,11 @@ function ComparisonCard({
   }
 
   return (
-    <div className={`bg-gradient-to-br ${getColor()} rounded-xl p-6 border border-slate-700`}>
-      <p className="text-slate-400 text-sm mb-2">{label}</p>
-      <p className="text-3xl md:text-4xl font-bold text-white mb-1">{isCount ? time : `${time}ms`}</p>
-      <p className="text-slate-300 text-sm">{getModeLabel()}</p>
+    <div className={`bg-gradient-to-br backdrop-blur-xl ${getColor()} rounded-2xl md:rounded-3xl p-6 border relative overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1`}>
+      <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+      <p className="text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">{label}</p>
+      <p className="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-sm tracking-tight">{isCount ? time : `${time}ms`}</p>
+      <p className="text-slate-400/80 text-sm md:text-base font-medium">{getModeLabel()}</p>
     </div>
   )
 }
