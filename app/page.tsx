@@ -31,7 +31,7 @@ export default function ParallelSimulation() {
   const [animationState, setAnimationState] = useState<any>({});
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Loadddfffflts from localStorage on component mount
+  // Loaddfffffdfffflts from localStorage on component mount
   useEffect(() => {
     const stored = localStorage.getItem("simulationResults");
     if (stored) {
