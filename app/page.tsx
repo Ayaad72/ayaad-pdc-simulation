@@ -43,7 +43,7 @@ export default function ParallelSimulation() {
     }
   }, []);
 
-  // Save reseeeesdffffffsssssssffessssewrrrrrrrrrrrrssssdddddeeeeeeeeeults to localStorage whenever they change
+  // Save reseeeesdffffffsssssssffessssssssdddddeeeeeeeeeults to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("simulationResults", JSON.stringify(results));
   }, [results]);
