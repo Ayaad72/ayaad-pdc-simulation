@@ -65,7 +65,7 @@ export default function ParallelSimulation() {
     setResults([newResult, ...results]);
   };
 
-  // Clear all history
+  // Clefsdfsdfsdfsdfsdar all history
   const clearHistory = () => {
     if (
       confirm(
